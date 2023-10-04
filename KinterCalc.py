@@ -8,11 +8,25 @@ e = tk.Entry(root, width = 35,borderwidth=5)
 e.grid(row=0,column=0, columnspan=3,  padx=10,pady=10)
 
 def button_click(number):
+    curent = e.get()
     e.delete(0, tk.END)
-    e.insert(0, number)
+    e.insert(0, str(curent) + str(number))
     
+def button_clear():
+    e.delete(0, tk.END)
     
- # Define Buttons
+def button_addit():
+    firstdig = e.get()
+    global f_num
+    f_num = int(firstdig)
+    e.delete(0, tk.END)
+
+def button_equals():
+    seconddig= e.get()
+    e.delete(0, tk.END)
+    e.insert(0, f_num + int(seconddig))
+    
+# Define Buttons
 button1= tk.Button(root, text='1', padx=40, pady=20, command=lambda: button_click(1))
 button2= tk.Button(root, text='2', padx=40, pady=20, command=lambda: button_click(2))
 button3= tk.Button(root, text='3', padx=40, pady=20, command=lambda: button_click(3))
@@ -24,9 +38,9 @@ button8= tk.Button(root, text='8', padx=40, pady=20, command=lambda: button_clic
 button9= tk.Button(root, text='9', padx=40, pady=20, command=lambda: button_click(9))
 button0= tk.Button(root, text='0', padx=40, pady=20, command=lambda: button_click(0))
 
-button_add= tk.Button(root, text='+', padx=39, pady=20, command=button_click)
-button_equal= tk.Button(root, text='=', padx=86.9, pady=20, command=button_click)
-button_clear= tk.Button(root, text='Clear', padx=77, pady=20, command=button_click)
+button_add= tk.Button(root, text='+', padx=39, pady=20, command=button_addit)
+button_equal= tk.Button(root, text='=', padx=86.9, pady=20, command=button_equals)
+button_clear= tk.Button(root, text='Clear', padx=77, pady=20, command=button_clear)
 
 
 #put buttons on screen 
@@ -46,14 +60,5 @@ button0.grid(row=4, column=0)
 button_clear.grid(row=4, column=1, columnspan=2)
 button_add.grid(row=5, column=0)
 button_equal.grid(row=5, column=1, columnspan=2)
-
-
-
-
-
-
-
-
-
 
 root.mainloop()
